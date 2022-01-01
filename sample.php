@@ -7,8 +7,8 @@ $paytmParams = array();
 
 /* add parameters in Array */
 $paytmParams["MID"] = "XVNIki66916401398815";
-$paytmParams["ORDERID"] = $_GET['orderId'];
-echo $_GET['orderId'];
+$paytmParams["ORDERID"] = "5555";
+
 /**
 * Generate checksum by parameters we have
 * Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
