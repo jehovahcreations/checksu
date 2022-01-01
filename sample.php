@@ -28,7 +28,7 @@ $body = "{\"mid\":\"XVNIki66916401398815\",\"orderId\":\"5555\"}";
 */
 $paytmChecksum = PaytmChecksum::generateSignature($body, 'n1CIsHE5hcmzNhMW');
 $verifySignature = PaytmChecksum::verifySignature($body, 'n1CIsHE5hcmzNhMW', $paytmChecksum);
-echo sprintf("generateSignature Returns: %s\n", $paytmChecksum);
+echo sprintf($paytmChecksum);
 //echo sprintf("verifySignature Returns: %b\n\n", $verifySignature);
 //$myArr = array("checksum"=>$paytmChecksum, "verified"=>$verifySignature);
 
