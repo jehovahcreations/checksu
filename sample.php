@@ -7,7 +7,7 @@ $paytmParams = array();
 
 /* add parameters in Array */
 $paytmParams["MID"] = "XVNIki66916401398815";
-$paytmParams["ORDERID"] = "5555";
+$paytmParams["ORDERID"] = $_GET['orderId'];
 
 /**
 * Generate checksum by parameters we have
