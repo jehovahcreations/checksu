@@ -15,8 +15,8 @@ $paytmParams["ORDERID"] = "5555";
 */
 $paytmChecksum = PaytmChecksum::generateSignature($paytmParams, 'n1CIsHE5hcmzNhMW');
 $verifySignature = PaytmChecksum::verifySignature($paytmParams, 'n1CIsHE5hcmzNhMW', $paytmChecksum);
-echo sprintf("generateSignature Returns: %s\n", $paytmChecksum);
-echo sprintf("verifySignature Returns: %b\n\n", $verifySignature);
+//echo sprintf("generateSignature Returns: %s\n", $paytmChecksum);
+//echo sprintf("verifySignature Returns: %b\n\n", $verifySignature);
 
 
 /* initialize JSON String */  
@@ -28,5 +28,10 @@ $body = "{\"mid\":\"XVNIki66916401398815\",\"orderId\":\"5555\"}";
 */
 $paytmChecksum = PaytmChecksum::generateSignature($body, 'n1CIsHE5hcmzNhMW');
 $verifySignature = PaytmChecksum::verifySignature($body, 'n1CIsHE5hcmzNhMW', $paytmChecksum);
-echo sprintf("generateSignature Returns: %s\n", $paytmChecksum);
-echo sprintf("verifySignature Returns: %b\n\n", $verifySignature);
+//echo sprintf("generateSignature Returns: %s\n", $paytmChecksum);
+//echo sprintf("verifySignature Returns: %b\n\n", $verifySignature);
+$myArr = array("checksum"=>$paytmChecksum, "verified"=>$verifySignature);
+
+$myJSON = json_encode($myArr);
+
+echo $myJSON;
