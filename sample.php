@@ -22,8 +22,8 @@ $paytmParams["ORDERID"] = $_GET['order'];
 
 $json = array("mid"=> $_GET['mid'],"orderId"=> $_GET['order']);
 /* initialize JSON String */
-$body = json_encode($json);
-
+$body = json_encode($json,JSON_UNESCAPED_SLASHES);
+echo $body;
 /**
  * Generate checksum by parameters we have in body
  * Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
