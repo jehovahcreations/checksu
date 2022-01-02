@@ -15,7 +15,7 @@ $paytmParams["ORDERID"] = $_GET['order'];
  */
 $paytmChecksum = PaytmChecksum::generateSignature($paytmParams, $_GET['key']);
 $verifySignature = PaytmChecksum::verifySignature($paytmParams, $_GET['key'], $paytmChecksum);
-return json_encode($paytmChecksum,JSON_UNESCAPED_UNICODE);
+return json_encode($paytmChecksum);
 // echo sprintf("generateSignature Returns: %s\n", $paytmChecksum);
 // echo sprintf("verifySignature Returns: %b\n\n", $verifySignature);
 
