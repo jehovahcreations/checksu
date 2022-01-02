@@ -25,6 +25,7 @@ $paytmParams["CALLBACK_URL"] =
  $verifySignature = PaytmChecksum::verifySignature($paytmParams, $_GET['key'], $paytmChecksum);
 $jaas = array("CHECKSUMHASH" => $paytmChecksum);
 $isVerifySignature = PaytmChecksum::verifySignature($paytmParams, $_GET['key'], $paytmChecksum);
+echo $paytmChecksum;
 if ($isVerifySignature) {
     echo json_encode($jaas);
 } else {
