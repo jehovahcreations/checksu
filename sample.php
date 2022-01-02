@@ -9,6 +9,13 @@ $paytmParams = array();
 /* add parameters in Array */
 $paytmParams["MID"] = $_GET['mid'];
 $paytmParams["ORDERID"] = $_GET['order'];
+$paytmParams["CUST_ID"] = $_GET['CUST_ID'];
+$paytmParams["CHANNEL_ID"] = $_GET['CHANNEL_ID'];
+$paytmParams["TXN_AMOUNT"] = $_GET['TXN_AMOUNT'];
+$paytmParams["WEBSITE"] = $_GET['WEBSITE'];
+$paytmParams["INDUSTRY_TYPE_ID"] = $_GET['INDUSTRY_TYPE_ID'];
+$paytmParams["CALLBACK_URL"] =
+"https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=$orderId";
 
 /**
  * Generate checksum by parameters we have
