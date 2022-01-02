@@ -4,7 +4,8 @@ require_once("./PaytmChecksum.php");
 
 /* initialize an array */
 $paytmParams = array();
-echo file_get_contents('php://input');
+// $data = file_get_contents('php://input');
+// echo 
 /* add parameters in Array */
 $paytmParams["MID"] = $_GET['mid'];
 $paytmParams["ORDERID"] = $_GET['order'];
