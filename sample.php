@@ -8,9 +8,9 @@ $paytmParams = array();
 /* add parameters in Array */
 $paytmParams["MID"] = $_GET['mid'];
 $paytmParams["ORDERID"] = $_GET['order'];
-echo $_GET['mid'];
-echo $_GET['order'];
-echo $_GET['key'];
+// echo $_GET['mid'];
+// echo $_GET['order'];
+// echo $_GET['key'];
 /**
 * Generate checksum by parameters we have
 * Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
@@ -26,7 +26,7 @@ $verifySignature = PaytmChecksum::verifySignature($paytmParams, $_GET['key'], $p
 $myArr = array("mid" => $_GET['mid'], "orderId" => $_GET['order']);
 
 $body = json_encode($myArr);
-echo $body;
+//echo $body;
 
 /**
 * Generate checksum by parameters we have in body
