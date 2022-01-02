@@ -1,49 +1,32 @@
 <?php
-/*
-* import checksum generation utility
-* You can get this utility from https://developer.paytm.com/docs/checksum/
-*/
-require_once("PaytmChecksum.php");
 
+require_once("./PaytmChecksum.php");
+
+/* initialize an array */
 $paytmParams = array();
 
-$paytmParams["body"] = array(
-    "requestType"   => "Payment",
-    "mid"           => $_GET['mid'],
-    "websiteName"   => "WEBSTAGING",
-    "orderId"       => $_GET['order'],
-    "callbackUrl"   => "https://developer.paytm.com/docs/checksum/https://developer.paytm.com/docs/checksum/",
-    "txnAmount"     => array(
-        "value"     => "1.00",
-        "currency"  => "INR",
-    ),
-    "userInfo"      => array(
-        "custId"    => "CUST_001",
-    ),
-);
+/* add parameters in Array */
+$paytmParams["MID"] = $_GET['mid'];
+$paytmParams["ORDERID"] = $_GET['order'];
 
-/*
-* Generate checksum by parameters we have in body
-* Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
-*/
-$checksum = PaytmChecksum::generateSignature(json_encode($paytmParams["body"], JSON_UNESCAPED_SLASHES), $_GET['key']);
+/**
+ * Generate checksum by parameters we have
+ * Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
+ */
+// $paytmChecksum = PaytmChecksum::generateSignature($paytmParams, 'YOUR_MERCHANT_KEY');
+// $verifySignature = PaytmChecksum::verifySignature($paytmParams, 'YOUR_MERCHANT_KEY', $paytmChecksum);
+// echo sprintf("generateSignature Returns: %s\n", $paytmChecksum);
+// echo sprintf("verifySignature Returns: %b\n\n", $verifySignature);
 
-$paytmParams["head"] = array(
-    "signature"    => $checksum
-);
+$json = array("mid"=> $_GET['mid'],"orderId"=> $_GET['order']);
+/* initialize JSON String */
+$body = json_encode($json);
 
-$post_data = json_encode($paytmParams, JSON_UNESCAPED_SLASHES);
-
-/* for Staging */
-$url = "https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid=XVNIki66916401398815&orderId=".$_GET['order'];
-
-/* for Production */
-// $url = "https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid=YOUR_MID_HERE&orderId=ORDERID_98765";
-
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
-curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json")); 
-$response = curl_exec($ch);
-print_r($response);
+/**
+ * Generate checksum by parameters we have in body
+ * Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
+ */
+$paytmChecksum = PaytmChecksum::generateSignature($body, $_GET['key']);
+$verifySignature = PaytmChecksum::verifySignature($body, $_GET['key'], $paytmChecksum);
+echo sprintf("generateSignature Returns: %s\n", $paytmChecksum);
+//echo sprintf("verifySignature Returns: %b\n\n", $verifySignature);
