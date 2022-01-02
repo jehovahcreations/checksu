@@ -27,7 +27,7 @@ $jaas = array("CHECKSUMHASH" => $paytmChecksum);
 $isVerifySignature = PaytmChecksum::verifySignature($paytmParams, $_GET['key'], $paytmChecksum);
 echo $paytmChecksum;
 if ($isVerifySignature) {
-    echo json_encode($jaas);
+    echo json_encode($jaas,JSON_UNESCAPED_SLASHES);
 } else {
     echo "Checksum Mismatched";
 }
