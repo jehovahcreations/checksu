@@ -17,7 +17,13 @@ $paytmParams["ORDERID"] = $_GET['order'];
  $paytmChecksum = PaytmChecksum::generateSignature($paytmParams, $_GET['key']);
  $verifySignature = PaytmChecksum::verifySignature($paytmParams, $_GET['key'], $paytmChecksum);
 $jaas = array("CHECKSUMHASH" => $paytmChecksum);
-echo json_encode($jaas);
+$isVerifySignature = PaytmChecksum::verifySignature($paytmParams, $_GET['key'], $paytmChecksum);
+if ($isVerifySignature) {
+    echo json_encode($jaas);
+} else {
+    echo "Checksum Mismatched";
+}
+
 
 // echo json_encode({})
 // echo sprintf("generateSignature Returns: %s\n", $paytmChecksum);
