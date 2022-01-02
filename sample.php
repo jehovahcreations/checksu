@@ -28,5 +28,5 @@ $body = json_encode($json);
  */
 $paytmChecksum = PaytmChecksum::generateSignature($body, $_GET['key']);
 $verifySignature = PaytmChecksum::verifySignature($body, $_GET['key'], $paytmChecksum);
-echo sprintf("generateSignature Returns: %s\n", $paytmChecksum);
+echo sprintf($paytmChecksum);
 //echo sprintf("verifySignature Returns: %b\n\n", $verifySignature);
